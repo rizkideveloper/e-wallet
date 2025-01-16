@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import { notFound,errorHandler } from './Middlewares/erorrMiddleware.js'
 import cookieParser from 'cookie-parser'
+import helmet from 'helmet'
+import ExpressMongoSanitize from 'express-mongo-sanitize'
 
 dotenv.config()
 
@@ -10,7 +12,9 @@ const app = express();
 const port = 3000;
 
 //Middleware
-app.use(express.json())
+app.use(express.json());
+app.use(helmet())
+app.use(ExpressMongoSanitize())
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
