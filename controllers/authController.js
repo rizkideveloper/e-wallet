@@ -72,7 +72,7 @@ export const getCurrentUser = asyncHandler(async(req,res) => {
     const user = await User.findById(req.user._id).select("-password")
 
     if (user) {
-        return res.status(404).json({
+        return res.status(200).json({
             user
         })
     }else{
@@ -92,3 +92,11 @@ export const logoutUser = async(req,res) => {
         message: "Logout success"
     })
 }
+
+export const getAllUser = asyncHandler(async(req,res) => {
+    const users = await User.find();
+
+    return res.status(200).json({
+      data: users
+    });
+})

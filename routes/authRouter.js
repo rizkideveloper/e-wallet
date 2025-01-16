@@ -1,5 +1,5 @@
 import express from "express"
-import { registerUser, loginUser, getCurrentUser, logoutUser } from "../controllers/authController.js"
+import { registerUser, loginUser, getCurrentUser, logoutUser, getAllUser } from "../controllers/authController.js"
 import { protectedMiddleware } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
@@ -14,5 +14,8 @@ router.get("/logout", protectedMiddleware, logoutUser);
 
 //get /api/v1/auth/getUser
 router.get("/getUser",protectedMiddleware,getCurrentUser);
+
+//get /api/v1/auth/user
+router.get("/getAllUser",getAllUser);
 
 export default router;
