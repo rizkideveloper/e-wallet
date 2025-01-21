@@ -12,7 +12,7 @@ router.post("/login", loginUser);
 //get /api/v1/auth/logout
 router.get("/logout", protectedMiddleware, logoutUser);
 
-//get /api/v1/auth/getUser
+//get /api/v1/auth/getCurrentUser
 router.get("/getUser",protectedMiddleware,getCurrentUser);
 
 //get /api/v1/auth/user

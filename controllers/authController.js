@@ -69,7 +69,7 @@ export const loginUser = asyncHandler(async (req,res) =>{
 })
 
 export const getCurrentUser = asyncHandler(async(req,res) => {
-    const user = await User.findById(req.user._id).select("-password")
+    const user = await User.findById(req.user._id).select("-password") //custom request
 
     if (user) {
         return res.status(200).json({

@@ -19,9 +19,12 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
 import authRouter from './routes/authRouter.js'
+import TransacionRouter from './routes/TransactionRouter.js'
 
 //Parent Router
 app.use("/api/v1/auth", authRouter)
+app.use("/api/v1/transaction", TransacionRouter)
+
 app.use(notFound)
 app.use(errorHandler)
 
