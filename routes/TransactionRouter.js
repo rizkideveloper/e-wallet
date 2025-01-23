@@ -4,7 +4,7 @@ import { getAllTransaction, detailTransaction, storeTransaction, updateTransacti
 const router = express.Router();
 
 //get /api/v1/transaction/getAll
-router.get("/",protectedMiddleware, getAllTransaction )
+router.get("/", getAllTransaction )
 
 //get /api/v1/transaction/show
 router.get("/show/:id", protectedMiddleware, detailTransaction);
