@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import { notFound,errorHandler } from './Middlewares/erorrMiddleware.js'
+import { notFound,errorHandler } from './middlewares/erorrMiddleware.js'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import ExpressMongoSanitize from 'express-mongo-sanitize'
@@ -30,7 +30,7 @@ app.use(errorHandler)
 
 //server
 app.listen(port, () => {
-  console.log(`Aplikasi ini berjalan di port sad ${port}`)
+  console.log(`Aplikasi ini berjalan di port ${port}`)
 });
 
 //Connecting DB
