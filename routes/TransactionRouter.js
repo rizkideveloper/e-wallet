@@ -4,19 +4,19 @@ import { getAllTransaction, detailTransaction, storeTransaction, updateTransacti
 const router = express.Router();
 
 //get /api/v1/transaction/getAll
-router.get("/", protectedMiddleware, getAllTransaction )
+router.get("/", getAllTransaction )
 
 //get /api/v1/transaction/show
-router.get("/show/:id", protectedMiddleware, detailTransaction);
+router.get("/show/:id", detailTransaction);
 
 //post /api/v1/transaction/store
-router.post("/store", protectedMiddleware, storeTransaction);
+router.post("/store", storeTransaction);
 
 //put /api/v1/transaction/update
-router.put("/update/:id",protectedMiddleware, updateTransaction);
+router.put("/update/:id", updateTransaction);
 
 //delete /api/v1/transaction/delete
-router.delete("/delete/:id",protectedMiddleware, deleteTransaction);
+router.delete("/delete/:id", deleteTransaction);
 
 
 export default router;
