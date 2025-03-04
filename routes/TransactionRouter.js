@@ -4,7 +4,7 @@ import { getAllTransaction, detailTransaction, storeTransaction, updateTransacti
 const router = express.Router();
 
 //get /api/v1/transaction/getAll
-router.get("/", getAllTransaction )
+router.get("/", protectedMiddleware, getAllTransaction )
 
 //get /api/v1/transaction/show
 router.get("/show/:id", protectedMiddleware, detailTransaction);
@@ -13,12 +13,10 @@ router.get("/show/:id", protectedMiddleware, detailTransaction);
 router.post("/store", protectedMiddleware, storeTransaction);
 
 //put /api/v1/transaction/update
-router.put("/update/:id", protectedMiddleware, updateTransaction);
+router.put("/update/:id",protectedMiddleware, updateTransaction);
 
 //delete /api/v1/transaction/delete
-router.delete("/delete/:id", protectedMiddleware, deleteTransaction);
+router.delete("/delete/:id",protectedMiddleware, deleteTransaction);
 
-//get /api/v1/transaction/file-upload
-router.get("/file-upload", protectedMiddleware, fileUploadTransaction);
 
 export default router;

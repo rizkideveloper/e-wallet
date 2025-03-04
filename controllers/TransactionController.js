@@ -3,15 +3,18 @@ import Transaction from "../models/TransactionModel.js";
 import User from "../models/userModel.js";
 
 export const getAllTransaction = asyncHandler(async (req, res) => {
-    res.send('All Transaction')
-
-    // const user_id = await User.findById(req.user._id).select("_id");
-    // res.send(user_id);
-    
+  const transactions = await Transaction.find({ user_id: req.user._id });
+  return res.status(200).json({
+    data: transactions,
+  });
 });
 
 export const detailTransaction = asyncHandler(async (req, res) => {
-  res.send("Detail Transaction");
+  const paramsId = req.params.id;
+  const transaction = await Transaction.findById(paramsId);
+  return res.status(200).json({
+    data: transaction,
+  });
 });
 
 export const storeTransaction = asyncHandler(async (req, res) => {
@@ -21,23 +24,36 @@ export const storeTransaction = asyncHandler(async (req, res) => {
     transaction_date: req.body.date,
     name: req.body.name,
     category: req.body.category,
-    price: req.body.price
+    price: req.body.price,
   });
 
   return res.status(200).json({
     status: "Success",
-    message: "Transaction has been added",
-    data: newTransaction
+    message: "transaction has been added",
+    data: newTransaction,
   });
-
 });
 
 export const updateTransaction = asyncHandler(async (req, res) => {
-  res.send("Update Transaction");
+  const paramsId = req.params.id;
+  const transaction = await Transaction.findByIdAndUpdate(paramsId,req.body,{
+    runValidators : true,
+    new: true
+  });
+
+  return res.status(200).json({
+    message: 'transaction has been updated!',
+    data: transaction,
+  });
 });
 
 export const deleteTransaction = asyncHandler(async (req, res) => {
-  res.send("Delete Transaction");
+  const paramsId = req.params.id;
+  const transaction = await Transaction.findByIdAndDelete(paramsId);
+
+  return res.status(200).json({
+    message: "transaction has been deleted!",
+  });
 });
 
 export const fileUploadTransaction = asyncHandler(async (req, res) => {

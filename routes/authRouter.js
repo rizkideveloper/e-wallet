@@ -13,9 +13,9 @@ router.post("/login", loginUser);
 router.get("/logout", protectedMiddleware, logoutUser);
 
 //get /api/v1/auth/getCurrentUser
-router.get("/getUser",protectedMiddleware,getCurrentUser);
+router.get("/getUser",protectedMiddleware, getCurrentUser);
 
 //get /api/v1/auth/user
-router.get("/getAllUser",getAllUser);
+router.get("/getAllUser", protectedMiddleware, getAllUser);
 
 export default router;
