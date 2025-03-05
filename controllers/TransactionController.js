@@ -3,6 +3,7 @@ import Transaction from "../models/TransactionModel.js";
 import User from "../models/userModel.js";
 
 export const getAllTransaction = asyncHandler(async (req, res) => {
+  
   const transactions = await Transaction.find({ user_id: req.user._id });
   return res.status(200).json({
     data: transactions,
@@ -49,7 +50,7 @@ export const updateTransaction = asyncHandler(async (req, res) => {
 
 export const deleteTransaction = asyncHandler(async (req, res) => {
   const paramsId = req.params.id;
-  const transaction = await Transaction.findByIdAndDelete(paramsId);
+  await Transaction.findByIdAndDelete(paramsId);
 
   return res.status(200).json({
     message: "transaction has been deleted!",

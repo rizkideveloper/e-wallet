@@ -10,10 +10,10 @@ router.post("/register", registerUser)
 router.post("/login", loginUser);
 
 //get /api/v1/auth/logout
-router.get("/logout",logoutUser);
+router.get("/logout", protectedMiddleware,logoutUser);
 
 //get /api/v1/auth/getCurrentUser
-router.get("/getUser", getCurrentUser);
+router.get("/getUser",protectedMiddleware, getCurrentUser);
 
 //get /api/v1/auth/user
 router.get("/getAllUser", protectedMiddleware, getAllUser);

@@ -5,7 +5,7 @@ import asyncHandler from './asyncHandler.js'
 export const protectedMiddleware = asyncHandler(async(req,res,next) => {
     let token;
 
-    token = req.cookies.jwt
+    token = req.body.token
 
     if (token) {
         try {

@@ -8,27 +8,28 @@ const signToken = id =>{
     })
 }
 
-const createSendResToken = (user, statusCode, res) => {
-    const token = signToken(user._id)
+// const createSendResToken = (user, statusCode, res) => {
+//     const token = signToken(user._id)
 
-    const isDev = process.env.NODE_ENV === 'development' ? false : true
+//     const isDev = process.env.NODE_ENV === 'development' ? false : true
 
-    const cookieOption = {
-        expire : new Date(
-            Date.now() + 6 * 24 * 60 * 60 * 1000
-        ),
-        httpOnly: true,
-        security: isDev
-    }
+//     const cookieOption = {
+//         expire : new Date(
+//             Date.now() + 6 * 24 * 60 * 60 * 1000
+//         ),
+//         httpOnly: true,
+//         security: isDev
+//     }
 
-    res.cookie('jwt', token, cookieOption)
+//     res.cookie('jwt', token, cookieOption)
 
-    user.password = undefined
+//     user.password = undefined
 
-    res.status(statusCode).json({
-        data : user,
-    })
-}
+//     res.status(statusCode).json({
+//         data : user,
+//         token
+//     })
+// }
 
 export const registerUser= asyncHandler(async (req,res) =>{
     const isAdmin = (await User.countDocuments()) === 0
@@ -42,7 +43,10 @@ export const registerUser= asyncHandler(async (req,res) =>{
         role: role
     })
 
-    createSendResToken(createUser, 201, res)
+    return res.status(200).json({
+        message: 'Account has been created',
+        data: createUser
+    })
 })
 
 export const loginUser = asyncHandler(async (req,res) =>{
@@ -59,7 +63,11 @@ export const loginUser = asyncHandler(async (req,res) =>{
 
     //cek password
     if(userData && (await userData.comparePassword(req.body.password))){
-        createSendResToken(userData, 200, res)
+        const token = signToken(userData._id)
+        return res.status(200).json({
+            message: 'Login success',
+            token
+        })
     }else{
         res.status(400)
         throw new Error("invalid user"); 
