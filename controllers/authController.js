@@ -91,11 +91,6 @@ export const getCurrentUser = asyncHandler(async(req,res) => {
 })
 
 export const logoutUser = async(req,res) => {
-    res.cookie('jwt',"",{
-        httpOnly: true,
-        expires: new Date(Date.now())
-    })
-
     res.status(200).json({
         message: "Logout success"
     })

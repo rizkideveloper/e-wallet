@@ -3,9 +3,9 @@ import User from '../models/userModel.js'
 import asyncHandler from './asyncHandler.js'
 
 export const protectedMiddleware = asyncHandler(async(req,res,next) => {
-    let token;
 
-    token = req.body.token
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
 
     if (token) {
         try {
