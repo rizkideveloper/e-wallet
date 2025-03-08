@@ -18,7 +18,7 @@ const transationSchema = new Schema({
   category: {
     type: String,
     enum: {
-      values: ["debit", "kredit"],
+      values: ["masuk", "keluar"],
       message: "{VALUE} is not supported",
     },
   },
