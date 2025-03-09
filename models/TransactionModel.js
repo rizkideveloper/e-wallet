@@ -3,13 +3,13 @@ const { Schema } = mongoose;
 
 const transationSchema = new Schema({
   user_id: {
-    type : mongoose.Schema.ObjectId,
-    ref : 'User',
-    required: [true,"user_id is required"]
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: [true, "user_id is required"],
   },
-  transaction_date:{
+  transaction_date: {
     type: String,
-    required: [true,"date is required"]
+    required: [true, "date is required"],
   },
   name: {
     type: String,
@@ -20,11 +20,12 @@ const transationSchema = new Schema({
     enum: {
       values: ["masuk", "keluar"],
       message: "{VALUE} is not supported",
+      required: [true, "category is required"],
     },
   },
   price: {
     type: Number,
-    required: [true, "price is required"]
+    required: [true, "price is required"],
   },
 });
 

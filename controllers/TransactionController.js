@@ -10,6 +10,15 @@ export const getAllTransaction = asyncHandler(async (req, res) => {
   });
 });
 
+export const getTransactionByCategory = asyncHandler(async (req,res) => {
+  const category = req.params.category
+  const transation_category = await Transaction.find({user_id: req.user._id, category: category})
+  
+  return res.status(200).json({
+    data: transaction_category,
+  });
+});
+
 export const detailTransaction = asyncHandler(async (req, res) => {
   const paramsId = req.params.id;
   const transaction = await Transaction.findById(paramsId);

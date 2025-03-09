@@ -7,11 +7,15 @@ import {
   updateTransaction,
   deleteTransaction,
   fileUploadTransaction,
+  getTransactionByCategory
 } from "../controllers/TransactionController.js";
 const router = express.Router();
 
 //get /api/v1/transaction/getAll
 router.get("/", protectedMiddleware, getAllTransaction);
+
+//get /api/v1/transaction/getByCategory
+router.get("/getByCategory/:category", protectedMiddleware, getTransactionByCategory);
 
 //get /api/v1/transaction/show
 router.get("/show/:id", protectedMiddleware, detailTransaction);
