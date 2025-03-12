@@ -9,7 +9,6 @@ const transationSchema = new Schema({
   },
   transaction_date: {
     type: String,
-    required: [true, "date is required"],
   },
   name: {
     type: String,
