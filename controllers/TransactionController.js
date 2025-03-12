@@ -31,7 +31,7 @@ export const storeTransaction = asyncHandler(async (req, res) => {
   const user_id = await User.findById(req.user._id).select("_id");
   const newTransaction = await Transaction.create({
     user_id: user_id,
-    transaction_date: req.body.date,
+    transaction_date: req.body.transaction_date,
     name: req.body.name,
     category: req.body.category,
     price: req.body.price,
